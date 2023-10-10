@@ -1,0 +1,23 @@
+This is the Data analysis code for run14 HFT D0 spectra.
+The input files are PicoDst produced with SL16d library.
+
+Before you run, there is a technic issue with the StRefmutCor class, it can;t be commit this directory to CVS.
+So you need to manual copy it from next directory to your StRoot
+/star/u/xgn1992/work/CodeQA/offline/paper/psn0692/DataAna/StRoot/StRefMultCorr
+
+==========================================
+To test the code, following the next steps. It will take ~15mins
+------------------------------------------
+starver SL16d
+cons
+./runMixtest.sh
+
+
+==========================================
+To run the full data samples, the script shown below. It will take +++weeks with current pdsf cpu source.
+So, we provide the final output files for you here with name :: D0_Data_Mix_MergeUsed.root
+------------------------------------------
+please skip this step with large data sample
+==========================================
+./submitPicoMixEventsMaker.sh
+

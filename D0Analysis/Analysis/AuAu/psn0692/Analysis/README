@@ -1,0 +1,9 @@
+1. as simle as run the next command, that's all you need to do.
+./run.sh
+
+2. the outfiles are located here:
+spectra: ./ptShift/D0_Spectra_Run14HFT.root
+raa: ./RAA/yifeiFit_USED/D0RAA_Run14HFT.root
+rcp: ./Rcp/D0_Rcp1_pTshift.root  with 60-80% as baseline
+rcp: ./Rcp/D0_Rcp2_pTshift.root  with 40-60% as baseline
+

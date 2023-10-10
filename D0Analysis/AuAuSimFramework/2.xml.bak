@@ -1,0 +1,63 @@
+<job  name="HIResponse_3_inf_Full" minFilesPerProcess="8" maxFilesPerProcess="12" fileListSyntax="xrootd" simulateSubmission ="false" >
+
+	<stdout URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan26_2023_pthat_3_inf/err/sched$JOBID.out" />
+	<stderr URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan26_2023_pthat_3_inf/err/sched$JOBID.error.out" />
+	<input URL="filelist:/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/Run14MidLumi_Randomised_2.list" nFiles="20000" />
+	<command>
+	    
+	    
+		cd $SCRATCH
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/HIOverlay_5GeV.C .
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/StRoot .
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/.sl73_gcc485 .
+		cp -r /star/u/droy1/Y2019/STAR/FastJet .
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/HFJets_AllHardQCD_3_inf_JetPt_5.list .
+
+		ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/fastjet
+        ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/siscone
+
+		starver dev
+        setenv FASTJET FastJet/fastjet-install
+
+        set MCFILENAME = "./HFJets_AllHardQCD_3_inf_JetPt_5.list"
+
+        @ nFile=0
+
+        while ( $nFile &lt; $INPUTFILECOUNT )
+
+        eval set filename = '$INPUTFILE'$nFile
+
+		echo $filename
+
+        shuf -n 200 ${MCFILENAME} &gt; ${JOBID}${nFile}.list
+
+        cp `cat ${JOBID}${nFile}.list` .
+
+        ls rcf*.root &gt; ${JOBID}${nFile}_MC.list
+
+        eval set inputmcfilename = ${JOBID}${nFile}_MC.list
+
+		root -l -b -q HIOverlay_5GeV.C\(\"$filename\",\"$inputmcfilename\",\"$JOBID$nFile\",1000000,\"$JOBID$nFile\"\) &gt; ./${JOBID}${nFile}.log
+	    
+	    cp ./${JOBID}${nFile}_jets.root /gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan26_2023_pthat_3_inf/out/.
+
+	    cp ./${JOBID}${nFile}.log /gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan26_2023_pthat_3_inf/log/.
+
+	    cp ./$inputmcfilename /gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan26_2023_pthat_3_inf/log/.
+
+	    rm rcf*.root
+	    rm ${JOBID}*.root
+	    rm $inputmcfilename
+
+	    @ nFile++
+	    end
+
+	</command>
+
+	<Generator> 
+ 		<Location>/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan26_2023_pthat_3_inf/gen/</Location> 
+ 	</Generator> 
+</job>

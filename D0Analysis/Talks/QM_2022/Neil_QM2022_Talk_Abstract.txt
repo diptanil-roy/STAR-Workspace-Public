@@ -1,0 +1,45 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{lineno}
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+\usepackage{blindtext}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\begin{document}
+
+% Keywords command
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf{\textit{Keywords:}} #1
+}
+
+\title{An Investigation of Charm Quark Jet Spectrum and Shape Modifications in Au+Au Collisions at $\sqrt{s_{NN}} = 200$ GeV}
+\author{Diptanil Roy, Matthew Kelsey \\ \textit{For the STAR Collaboration}}
+\date{\today}
+\maketitle
+
+\section{Abstract}
+
+\begin{linenumbers}
+Partons (quarks/gluons) in heavy-ion collisions interact strongly with the Quark-Gluon Plasma (QGP), and hence have their energy and shower structure modified compared to those in vacuum, e.g., those produced in proton-proton collisions. Theoretical calculations predict that radiative energy loss, which is the dominant mode of energy loss for gluons and light quarks in the QGP, is suppressed for heavy quarks (such as charm and bottom) at low transverse momenta ($p_{\text{T}}$). A measurement of the $D^0 (c\bar{u})$ meson radial profile in jets from the CMS experiment at the LHC hints at its modification at low $D^0$ $p_{\text{T}}$ in heavy-ion collisions, which is qualitatively different from that of the inclusive hadrons. The excellent secondary vertex resolution provided by the Heavy Flavor Tracker in the STAR experiment at RHIC enables reconstruction of $D^0$ mesons at low $p_{\text{T}}$ with high significance, making STAR ideal for similar measurements.
+\newline
+We report the first measurements of the $D^0$ meson tagged jet $p_{\text{T}}$ spectra and $D^0$ meson radial profile in anti-$k_\text{T}$ jets from Au+Au collisions at $\sqrt{s_{\text{NN}}} = 200$ GeV at RHIC, collected by the STAR experiment in 2014. We compare the results to PYTHIA-8 predictions at the same center-of-mass energy. We also report the nuclear modification factor $R_{\text{CP}}$ for these $D^{0}$-meson tagged jets. Such measurements are expected to shed light on parton flavor and mass dependencies of jet quenching, and constrain theoretical models.
+
+\end{linenumbers}
+
+\hspace{10pt}
+
+\end{document}

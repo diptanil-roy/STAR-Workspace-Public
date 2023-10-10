@@ -1,0 +1,29 @@
+This is the embedding code for run14 kaon-
+PS: similar code for pion+, pion-, kaon+, kaon-
+
+Before you run, there is a technic issue with the StRefmutCor class, i can;t commit this directory to CVS.
+So you need to manual copy it from next directory to your StRoot
+/star/u/xgn1992/work/CodeQA/offline/paper/psn0692/DataAna/StRoot/StRefMultCorr
+
+==========================================
+To test the code, following the next steps. It will take ~7mins
+==========================================
+starver SL16d
+cons
+./runTest.sh
+
+
+==========================================
+To run the full data samples, the script shown below. It will take +++Days with current pdsf cpu source.
+But the full output files can be found here : Run14_SL16d_Embedding_KaonMinus_Oct17.McAna.root
+==========================================
+please skip this step
+==========================================
+./submitDDD.sh
+
+
+==========================================
+To analysis the output, and extrack the tpc tracking efficiency, please go inside directory ./ana/
+And simply run the next script. It will take ~miutes
+==========================================
+./run.csh

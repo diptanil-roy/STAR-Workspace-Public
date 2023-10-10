@@ -1,0 +1,87 @@
+\begin{thebibliography}{10}
+
+\bibitem{STARQGP}
+STAR Collaboration.
+\newblock {\em Nuclear Physics A}, 757(1-2):102–183, 2005.
+
+\bibitem{ReviewJets}
+M.~Connors~\textit{et al.}
+\newblock {\em Rev. Mod. Phys.}, 90:025005, 2018.
+
+\bibitem{InclusiveJetRCPSTAR}
+STAR Collaboration.
+\newblock {\em Phys. Rev. C}, 102:054913, 2020.
+
+\bibitem{CMSJetShape}
+CMS Collaboration.
+\newblock {\em Physics Letters B}, 730:243--263, 2014.
+
+\bibitem{DeadConeTheory}
+Yu~L Dokshitzer~\textit{et al}.
+\newblock {\em J. Phys. G: Nucl. Part. Phys.}, 17(10):1602--1604, 1991.
+
+\bibitem{DeadCone}
+ALICE Collaboration.
+\newblock {\em Nature}, 605(7910):440--446, 2022.
+
+\bibitem{bjetQuenchingCMS}
+CMS Collaboration.
+\newblock {\em Phys. Rev. Lett.}, 113:132301, 2014.
+
+\bibitem{CMSD0JetPaper}
+CMS Collaboration.
+\newblock {\em Phys. Rev. Lett.}, 125:102001, 2020.
+
+\bibitem{STAROverview}
+STAR Collaboration.
+\newblock {\em Nuc. Ins. Methods. A}, 499(2):624--632, 2003.
+
+\bibitem{STARDijetPaper}
+STAR Collaboration.
+\newblock {\em Phys. Rev. Lett.}, 119:062301, 2017.
+
+\bibitem{PDG}
+Particle~Data Group.
+\newblock {\em Prog. Theor. Exp. Phys}, 2020:083C--84, 2020.
+
+\bibitem{HFT}
+L.~Greiner~\textit{et al}.
+\newblock {\em Nuc. Ins. Methods. A}, 650(1):68--72, 2011.
+
+\bibitem{STARD0PaperAuAu}
+STAR Collaboration.
+\newblock {\em Phys. Rev. C}, 99:034908, 2019.
+
+\bibitem{FASTJET}
+M.~Cacciari~\textit{et al.}
+\newblock {\em The Eur. Phys. Jour. C}, 72(3):1896, 2012.
+
+\bibitem{JetAreaBackground}
+M.~Cacciari~\textit{et al.}
+\newblock {\em Physics Letters B}, 659(1):119--126, 2008.
+
+\bibitem{SPlot}
+M.~Pivk~\textit{et al.}
+\newblock {\em Nuc. Ins. Methods. A}, 555(1):356--369, 2005.
+
+\bibitem{Unfolding}
+G.~D'Agostini.
+\newblock {\em Nuc. Ins. Methods. A}, 362(2):487--498, 1995.
+
+\bibitem{STARTune}
+M.~R. Aguilar~\textit{et al.}
+\newblock {\em arXiv}, 2021.
+
+\bibitem{GEANT3}
+R.~Brun~\textit{et al.}
+\newblock {\em CERN-DD-EE-84-1}, 1987.
+
+\bibitem{FONLL}
+M.~Cacciari~\textit{et al}.
+\newblock {\em JHEP}, 1998(05):007--007, 1998.
+
+\bibitem{SPJet_JetQuenching}
+STAR Collaboration.
+\newblock {\em Phys. Rev. C}, 96:024905, 2017.
+
+\end{thebibliography}

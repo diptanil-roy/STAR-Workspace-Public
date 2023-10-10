@@ -1,0 +1,6 @@
+{ decls }
+namespace std { inline namespace __1 {  } }
+
+[ libmydict.so ]
+# List of selected classes
+class vector<Particle>

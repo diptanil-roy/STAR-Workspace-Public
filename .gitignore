@@ -1,0 +1,34 @@
+#From the MAC Systems:
+**.DS_store
+
+#From the actual directories
+**.root 
+**.fzd
+**.dat
+**.log
+**/fastjet
+**/siscone
+**.dataset
+**.session.xml*
+
+**.sl73_gcc485/
+**.sl73_x8664_gcc485/
+**.consign
+
+**star-sw-1/
+**star-sw-1/
+
+**RooUnfold/
+**VERTEXFULL_Backup/
+
+**.lhe
+
+**RooUnfold/*
+
+#Temporary compile files that get made.
+*.tmp
+*.dictContent.h
+*dictUmbrella.h
+*.pcm
+*.d
+*.so

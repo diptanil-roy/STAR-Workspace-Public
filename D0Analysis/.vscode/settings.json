@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "HIOverlay_5GeV.C": "cpp",
+        "MCResponse.C": "cpp",
+        "starsim_D0jet.C": "cpp",
+        "MCResponseMaker.C": "cpp",
+        "UnfoldData.C": "cpp",
+        "PrepareResponseHistograms.C": "cpp",
+        "PlotTheUnfoldedDistributionForData.C": "cpp",
+        "CreateResponseMatrix.C": "cpp",
+        "PlotTheUnfoldedDistributionForMC.C": "cpp",
+        "UnfoldMC.C": "cpp",
+        "makeWeightsFor1GeV.C": "cpp",
+        "applyWeightsFor1GeV.C": "cpp",
+        "SlimDataTree.C": "cpp",
+        "PlotsForCollaborationMeet.C": "cpp",
+        "PlotsComparingSuperIter.C": "cpp",
+        "PlotsDataSuperIter.C": "cpp",
+        "MakeOldDataComparisonPlots.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

@@ -1,0 +1,17 @@
+TY  - JOUR
+AU  - Cacciari, Matteo
+AU  - Salam, Gavin P.
+AU  - Soyez, Gregory
+PY  - 2012
+DA  - 2012/03/16
+TI  - FastJet user manual
+JO  - The European Physical Journal C
+SP  - 1896
+VL  - 72
+IS  - 3
+AB  - FastJet is a C++ package that provides a broad range of jet finding and analysis tools. It includes efficient native implementations of all widely used 2→1 sequential recombination jet algorithms for pp and e+e− collisions, as well as access to 3rd party jet algorithms through a plugin mechanism, including all currently used cone algorithms. FastJet also provides means to facilitate the manipulation of jet substructure, including some common boosted heavy-object taggers, as well as tools for estimation of pileup and underlying-event noise levels, determination of jet areas and subtraction or suppression of noise in jets.
+SN  - 1434-6052
+UR  - https://doi.org/10.1140/epjc/s10052-012-1896-2
+DO  - 10.1140/epjc/s10052-012-1896-2
+ID  - Cacciari2012
+ER  - 

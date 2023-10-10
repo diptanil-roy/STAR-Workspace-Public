@@ -1,0 +1,40 @@
+<job  name="D0JetTreeMaker_Matt" maxFilesPerProcess="40" fileListSyntax="paths" simulateSubmission ="false" >
+
+	<stdout URL="file:/gpfs01/star/pwg/mkelsey/output/D0JetTree_Mar24/log/$JOBID.log" />
+	<stderr URL="file:/gpfs01/star/pwg/mkelsey/output/D0JetTree_Mar24/log/$JOBID.err" />
+	<input URL="filelist:/gpfs01/star/pwg/droy1/D0JetTreeMakerCode/D0PicoDsts_FileList.list" nFiles="all" />
+	<command>
+
+	    
+	    mkdir /tmp/mkelsey_${JOBID}
+		cd /tmp/mkelsey_${JOBID}
+
+		cp -r /gpfs01/star/pwg/droy1/D0JetTreeMakerCode/D0JetTreeMaker.C .
+		cp -r /gpfs01/star/pwg/droy1/D0JetTreeMakerCode/StRoot .
+		cp -r /gpfs01/star/pwg/droy1/D0JetTreeMakerCode/.sl73_gcc485 .
+		cp -r /star/u/droy1/Y2019/STAR/FastJet .
+
+		ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/fastjet
+		ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/siscone
+
+		starver dev
+		setenv FASTJET FastJet/fastjet-install
+
+	    root -b -q -l 'D0JetTreeMaker.C( "'"$FILELIST"'", "'"${JOBID}.root"'", 1000000000,  "'"${JOBID}"'" )'
+	    
+	    cp JetTree_${JOBID}.root /gpfs01/star/pwg/mkelsey/output/D0JetTree_Mar24/jettree/.
+	    cp ${JOBID}.root /gpfs01/star/pwg/mkelsey/output/D0JetTree_Mar24/out/.
+
+	    unlink fastjet
+	    unlink siscone
+
+	    rm -rf /tmp/mkelsey_${JOBID}
+
+	</command>
+
+	<Generator> 
+ 		<Location>/gpfs01/star/pwg/mkelsey/output/D0JetTree_Mar24/gen/</Location> 
+ 	</Generator> 
+</job>
+
+

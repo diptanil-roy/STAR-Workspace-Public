@@ -1,0 +1,30 @@
+<job  name="MuDstToPicoDst" maxFilesPerProcess="1" fileListSyntax="paths" simulateSubmission ="false" >
+
+        <stdout URL="file:/gpfs01/star/pwg_tasks/jetcorr03/OfficialEmbeddingQA_HFJet_pthat3_5/log/$JOBID.log" />
+        <stderr URL="file:/gpfs01/star/pwg_tasks/jetcorr03/OfficialEmbeddingQA_HFJet_pthat3_5/log/$JOBID.err" />
+        <input URL="filelist:/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/MuDstToPicoDst/QA_pthat3_5.list" nFiles="all" />
+        <command>
+
+            
+            mkdir /tmp/droy1_${JOBID}
+            cd /tmp/droy1_${JOBID}
+
+            cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/MuDstToPicoDst/genDst.C .
+
+            cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/MuDstToPicoDst/StRoot .
+            cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/MuDstToPicoDst/.sl73_gcc485 .
+
+            starver dev
+
+            root4star -l -b -q 'genDst.C(-1, "'"picoDst,PicoVtxMode:PicoVtxVpdOrDefault,PicoCovMtxMode:PicoCovMtxWrite"'", "'"$INPUTFILE0"'")'
+            
+            cp /tmp/droy1/${JOBID}/INPUTFILES/*.picoDst.root /gpfs01/star/pwg_tasks/jetcorr03/OfficialEmbeddingQA_HFJet_pthat3_5/out/.
+
+            rm -rf /tmp/droy1_${JOBID}
+
+        </command>
+
+        <Generator> 
+                <Location>/gpfs01/star/pwg_tasks/jetcorr03/OfficialEmbeddingQA_HFJet_pthat3_5/gen/</Location> 
+        </Generator> 
+</job>

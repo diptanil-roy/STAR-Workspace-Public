@@ -1,0 +1,14 @@
+This macro can serve as the guideline for the Simulation Sample requested by JetCorr for Heavy Flavor Jets Study.
+I do not expect the macro to run out-of-the-box on any system, as the system dependent paths for FASTJET and PYTHIA might need to be altered, or at least set globally.
+
+PYTHIA here is OUT-OF-THE-BOX, but for our simulation, we request for the STAR Tune PYTHIA8.
+
+To run (with the proper paths put in), one should be able to just run 'root -l RunMacro.C'.
+
+There are two vertex files in the VERTEXFULL folder, which I created from the PicoDst Files. 
+For example, 'Vertex_st_physics_15094070_raw_1000002.txt' is created from the PicoDst file 'root://xrdstar.rcf.bnl.gov:1095//home/starlib/home/starreco/reco/AuAu_200_production_mid_2014/ReversedFullField/P16id.SL18f/2014/094/15094070/st_physics_15094070_raw_1000002.picoDst.root'.
+
+If you are using .daq files for the vertices, then that section needs to be repurposed.
+
+The macro generates two files. The .root file is for QA on the jets, and contains basic info on the jets formed, and the D0s.
+The .txt file serves as the input to GEANT.

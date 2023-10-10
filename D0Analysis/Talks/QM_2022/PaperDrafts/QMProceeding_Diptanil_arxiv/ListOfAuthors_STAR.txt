@@ -1,0 +1,64 @@
+M.S. Abdallah4, B.E. Aboona53, J. Adam6, L. Adamczyk2, J.R. Adams38, J.K. Adkins30, I. Aggarwal40, M.M. Aggarwal40, Z. Ahammed59, D.M. Anderson53, E.C. Aschenauer6, M.U. Ashraf12, J. Atchison1, F.G. Atetalla29, V. Bairathi51, W. Baker11, J.G. Ball Cap21, K. Barish11, A. Behera50, R. Bellwied21, P. Bhagat28, A. Bhasin28, J. Bielcik15, J. Bielcikova37, J.D. Brandenburg6, X.Z. Cai48, H. Caines62, M. Calderon de la Barca Sanchez9, D. Cebra9, I. Chakaberia31, P. Chaloupka15, B.K. Chan10, F-H. Chang36, Z. Chang26, A. Chatterjee60, S. Chattopadhyay59, D. Chen11, J. Chen47, J.H. Chen19, X. Chen45, Z. Chen47, J. Cheng55, S. Choudhury19, W. Christie6, X. Chu6, H.J. Crawford8, M. Csanad17, M. Daugherity1, I.M. Deppner20, A. Dhamija40, L. Di Carlo61, L. Didenko6, P. Dixit23, X. Dong31, J.L. Drachenberg1, E. Duckworth29, J.C. Dunlop6, J. Engelage8, G. Eppley42, S. Esumi56, O. Evdokimov13, A. Ewigleben32, O. Eyser6, R. Fatemi30, F.M. Fawzi4, S. Fazio7, C.J. Feng36, Y. Feng41, E. Finch49, Y. Fisyak6, A. Francisco62, C. Fu12, C.A. Gagliardi53, T. Galatyuk16, F. Geurts42, N. Ghimire52, A. Gibson58, K. Gopal24, X. Gou47, D. Grosnick58, A. Gupta28, W. Guryn6, A. Hamed4, Y. Han42, S. Harabasz16, M.D. Harasty9, J.W. Harris62, H. Harrison30, S. He12, W. He19, X.H. He27, Y. He47, S. Heppelmann9, N. Herrmann20, E. Hoffman21, L. Holub15, C. Hu27, Q. Hu27, Y. Hu19, H. Huang36, H.Z. Huang10, S.L. Huang50, T. Huang36, X. Huang55, Y. Huang55, T.J. Humanic38, D. Isenhower1, M. Isshiki56, W.W. Jacobs26, C. Jena24, A. Jentsch6, Y. Ji31, J. Jia6,50, K. Jiang45, C. Jin42, X. Ju45, E.G. Judd8, S. Kabana51, M.L. Kabir11, S. Kagamaster32, D. Kalinkin26,6, K. Kang55, D. Kapukchyan11, K. Kauder6, H.W. Ke6, D. Keane29, M. Kelsey61, D.P. Kikola 60, B. Kimelman9, D. Kincses17, I. Kisel18, A. Kiselev6, A.G. Knospe32, H.S. Ko31, L.K. Kosarzewski15, L. Kramarik15, L. Kumar40, S. Kumar27, R. Kunnawalkam Elayavalli62, J.H. Kwasizur26, R. Lacey50, S. Lan12, J.M. Landgraf6, J. Lauret6, A. Lebedev6, J.H. Lee6, Y.H. Leung31, N. Lewis6, C. Li47, C. Li45, W. Li42, W. Li48, X. Li45, Y. Li45, Y. Li55, Z. Li45, X. Liang11, Y. Liang29, R. Licenik37,15, T. Lin47, Y. Lin12, M.A. Lisa38, F. Liu12, H. Liu26, H. Liu12, P. Liu50, T. Liu62, X. Liu38, Y. Liu53, Z. Liu45, T. Ljubicic6, W.J. Llope61, R.S. Longacre6, E. Loyd11, T. Lu27, N.S. Lukow52, X.F. Luo12, L. Ma19, R. Ma6, Y.G. Ma19, N. Magdy13, D. Mallick35, S. Margetis29, C. Markert54, H.S. Matis31, J.A. Mazer43, S. Mioduszewski53, B. Mohanty35, M.M. Mondal50, I. Mooney61, A. Mukherjee17, M. Nagy17, A.S. Nain40, J.D. Nam52, Md. Nasim23, K. Nayak24, D. Neff10, J.M. Nelson8, D.B. Nemes62, M. Nie47, T. Niida56, R. Nishitani56, T. Nonaka56, A.S. Nunes6, G. Odyniec31, A. Ogawa6, S. Oh31, K. Okubo56, B.S. Page6, R. Pak6, J. Pan53, A. Pandav35, A.K. Pandey56, A. Paul11, B. Pawlik39, D. Pawlowska60, C. Perkins8, L.S. Pinsky21, J. Pluta60, B.R. Pokhrel52, J. Porter31, M. Posik52, V. Prozorova15, N.K. Pruthi40, M. Przybycien2, J. Putschke61, Z. Qin55, H. Qiu27, A. Quintero52, C. Racz11, S.K. Radhakrishnan29, N. Raha61, R.L. Ray54, R. Reed32, H.G. Ritter31, M. Robotkova37,15, J.L. Romero9, D. Roy43, P. Roy Chowdhury60, L. Ruan6, A.K. Sahoo23, N.R. Sahoo47, H. Sako56, S. Salur43, S. Sato56, W.B. Schmidke6, N. Schmitz33, B.R. Schweid50, F-J. Seck16, J. Seger14, R. Seto11, P. Seyboth33, N. Shah25, P.V. Shanmuganathan6, M. Shao45, T. Shao19, R. Sharma24, A.I. Sheikh29, D.Y. Shen19, K. Shen45, S.S. Shi12, Y. Shi47, Q.Y. Shou19, E.P. Sichtermann31, R. Sikora2, J. Singh40, S. Singha27, P. Sinha24, M.J. Skoby5,41, N. Smirnov62, Y. Sohngen20, W. Solyst26, Y. Song62, H.M. Spinka3, B. Srivastava41, T.D.S. Stanislaus58, M. Stefaniak60, D.J. Stewart62, B. Stringfellow41, A.A.P. Suaide44, M. Sumbera37, X.M. Sun12, X. Sun13, Y. Sun45, Y. Sun22, B. Surrow52, Z.W. Sweger9, P. Szymanski60, A.H. Tang6, Z. Tang45, T. Tarnowsky34, J.H. Thomas31, A.R. Timmins21, D. Tlusty14, T. Todoroki56, C.A. Tomkiel32, S. Trentalange10, R.E. Tribble53, P. Tribedy6, S.K. Tripathy17, T. Truhlar15, B.A. Trzeciak15, O.D. Tsai10, Z. Tu6, T. Ullrich6, D.G. Underwood3,58, I. Upsal42, G. Van Buren6, J. Vanek37,15, I. Vassiliev18, V. Verkest61, F. Videbaek6, S.A. Voloshin61, F. Wang41, G. Wang10, J.S. Wang22, P. Wang45, X. Wang47, Y. Wang12, Y. Wang55, Z. Wang47, J.C. Webb6, P.C. Weidenkaff20, G.D. Westfall34, D. Wielanek60, H. Wieman31, S.W. Wissink26, R. Witt57, J. Wu12, J. Wu27, Y. Wu11, B. Xi48, Z.G. Xiao55, G. Xie31, W. Xie41, H. Xu22, N. Xu31, Q.H. Xu47, Y. Xu47, Z. Xu6, Z. Xu10, G. Yan47, C. Yang47, Q. Yang47, S. Yang46, Y. Yang36, Z. Ye42, Z. Ye13, L. Yi47, K. Yip6, Y. Yu47, H. Zbroszczyk60, W. Zha45, C. Zhang50, D. Zhang12, J. Zhang47, S. Zhang45, S. Zhang19, Y. Zhang27, Y. Zhang45, Y. Zhang12, Z.J. Zhang36, Z. Zhang6, Z. Zhang13, F. Zhao27, J. Zhao19, M. Zhao6, C. Zhou19, J. Zhou45, Y. Zhou12, X. Zhu55, M. Zurek3, M. Zyzak18
+
+1Abilene Christian University, Abilene, Texas 79699
+2AGH University of Science and Technology, FPACS, Cracow 30-059, Poland
+3Argonne National Laboratory, Argonne, Illinois 60439
+4American University of Cairo, New Cairo 11835, New Cairo, Egypt
+5Ball State University, Muncie, Indiana, 47306
+6Brookhaven National Laboratory, Upton, New York 11973
+7University of Calabria & INFN-Cosenza, Italy
+8University of California, Berkeley, California 94720
+9University of California, Davis, California 95616
+10University of California, Los Angeles, California 90095
+11University of California, Riverside, California 92521
+12Central China Normal University, Wuhan, Hubei 430079
+13University of Illinois at Chicago, Chicago, Illinois 60607
+14Creighton University, Omaha, Nebraska 68178
+15Czech Technical University in Prague, FNSPE, Prague 115 19, Czech Republic
+16Technische Universitat Darmstadt, Darmstadt 64289, Germany
+17ELTE Eotvos Lorand University, Budapest, Hungary H-1117
+18Frankfurt Institute for Advanced Studies FIAS, Frankfurt 60438, Germany
+19Fudan University, Shanghai, 200433
+20University of Heidelberg, Heidelberg 69120, Germany
+21University of Houston, Houston, Texas 77204
+22Huzhou University, Huzhou, Zhejiang 313000
+23Indian Institute of Science Education and Research (IISER), Berhampur 760010 , India
+24Indian Institute of Science Education and Research (IISER) Tirupati, Tirupati 517507, India
+25Indian Institute Technology, Patna, Bihar 801106, India
+26Indiana University, Bloomington, Indiana 47408
+27Institute of Modern Physics, Chinese Academy of Sciences, Lanzhou, Gansu 730000
+28University of Jammu, Jammu 180001, India
+29Kent State University, Kent, Ohio 44242
+30University of Kentucky, Lexington, Kentucky 40506-0055
+31Lawrence Berkeley National Laboratory, Berkeley, California 94720
+32Lehigh University, Bethlehem, Pennsylvania 18015
+33Max-Planck-Institut fur Physik, Munich 80805, Germany
+34Michigan State University, East Lansing, Michigan 48824
+35National Institute of Science Education and Research, HBNI, Jatni 752050, India
+36National Cheng Kung University, Tainan 70101
+37Nuclear Physics Institute of the CAS, Rez 250 68, Czech Republic
+38Ohio State University, Columbus, Ohio 43210
+39Institute of Nuclear Physics PAN, Cracow 31-342, Poland
+40Panjab University, Chandigarh 160014, India
+41Purdue University, West Lafayette, Indiana 47907
+42Rice University, Houston, Texas 77251
+43Rutgers University, Piscataway, New Jersey 08854
+44Universidade de Sao Paulo, Sao Paulo, Brazil 05314-970
+45University of Science and Technology of China, Hefei, Anhui 230026
+46South China Normal University, Guangzhou, Guangdong 510631
+47Shandong University, Qingdao, Shandong 266237
+48Shanghai Institute of Applied Physics, Chinese Academy of Sciences, Shanghai 201800
+49Southern Connecticut State University, New Haven, Connecticut 06515
+50State University of New York, Stony Brook, New York 11794
+51Instituto de Alta Investigacion, Universidad de Tarapaca, Arica 1000000, Chile
+52Temple University, Philadelphia, Pennsylvania 19122
+53Texas A&M University, College Station, Texas 77843
+54University of Texas, Austin, Texas 78712
+55Tsinghua University, Beijing 100084
+56University of Tsukuba, Tsukuba, Ibaraki 305-8571, Japan
+57United States Naval Academy, Annapolis, Maryland 21402
+58Valparaiso University, Valparaiso, Indiana 46383
+59Variable Energy Cyclotron Centre, Kolkata 700064, India
+60Warsaw University of Technology, Warsaw 00-661, Poland
+61Wayne State University, Detroit, Michigan 48201
+62Yale University, New Haven, Connecticut 06520

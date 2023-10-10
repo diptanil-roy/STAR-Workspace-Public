@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "Test.C": "cpp",
+        "MuHijingMaker.C": "cpp",
+        "MuMacro.C": "cpp",
+        "D0Jet.C": "cpp"
+    }
+}

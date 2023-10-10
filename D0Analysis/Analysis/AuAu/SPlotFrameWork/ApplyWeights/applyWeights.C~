@@ -1,0 +1,277 @@
+void plot(){
+  gROOT->ProcessLine(".x ~/myStyle.C");
+  TH1::SetDefaultSumw2();
+
+  TFile *f_ = new TFile("out.root");
+  double ww = 0 ; 
+  if(1){//All or high pt
+      hD0Pt = (TH1F*)f_->Get("hD0Pt");
+      hJetPt = (TH1F*)f_->Get("hJetPt");
+      hZ = (TH1F*)f_->Get("hZ");
+      hR = (TH1F*)f_->Get("hR");
+      hD0Pt_SB = (TH1F*)f_->Get("hD0Pt_SB");
+      hJetPt_SB = (TH1F*)f_->Get("hJetPt_SB");
+      hZ_SB = (TH1F*)f_->Get("hZ_SB");
+      hR_SB = (TH1F*)f_->Get("hR_SB");
+      
+      hD0Pt_Low = (TH1F*)f_->Get("hD0Pt_Low");
+      hJetPt_Low = (TH1F*)f_->Get("hJetPt_Low");
+      hZ_Low = (TH1F*)f_->Get("hZ_Low");
+      hR_Low = (TH1F*)f_->Get("hR_Low");
+      hD0Pt_SB_Low = (TH1F*)f_->Get("hD0Pt_SB_Low");
+      hJetPt_SB_Low = (TH1F*)f_->Get("hJetPt_SB_Low");
+      hZ_SB_Low = (TH1F*)f_->Get("hZ_SB_Low");
+      hR_SB_Low = (TH1F*)f_->Get("hR_SB_Low");
+      ww = 0.91;//
+      if(0){// high PT
+	  SBSub(hD0Pt,hD0Pt_Low,1);
+	  SBSub(hJetPt,hJetPt_Low,1);
+	  SBSub(hR,hR_Low,1);
+	  SBSub(hZ,hZ_Low,1);
+	  SBSub(hD0Pt_SB,hD0Pt_SB_Low,1);
+	  SBSub(hJetPt_SB,hJetPt_SB_Low,1);
+	  SBSub(hR_SB,hR_SB_Low,1);
+	  SBSub(hZ_SB,hZ_SB_Low,1);
+	  ww = 0.12/0.17;//assume linear or flat inv. mass
+      }
+  }else{// Low PT
+      hD0Pt = (TH1F*)f_->Get("hD0Pt_Low");hD0Pt->SetName("hD0Pt");
+      hJetPt = (TH1F*)f_->Get("hJetPt_Low");hJetPt->SetName("hJetPt");
+      hZ = (TH1F*)f_->Get("hZ_Low");hZ->SetName("hZ");
+      hR = (TH1F*)f_->Get("hR_Low");hR->SetName("hR");
+      hD0Pt_SB = (TH1F*)f_->Get("hD0Pt_SB_Low");hD0Pt_SB->SetName("hD0Pt_SB");
+      hJetPt_SB = (TH1F*)f_->Get("hJetPt_SB_Low");hJetPt_SB->SetName("hJetPt_SB");
+      hZ_SB = (TH1F*)f_->Get("hZ_SB_Low");hZ_SB->SetName("hZ_SB");
+      hR_SB = (TH1F*)f_->Get("hR_SB_Low");hR_SB->SetName("hR_SB");
+      ww = 0.91;// actual bkg yield 
+  }
+  SBSub(hD0Pt,hD0Pt_SB,ww);
+  SBSub(hJetPt,hJetPt_SB,ww);
+  SBSub(hZ,hZ_SB,ww);
+  SBSub(hR,hR_SB,ww);
+  
+
+  hD0Pt->SetMarkerColor(kRed);
+  hD0Pt->SetMarkerStyle(25);
+  hD0Pt->SetLineColor(kRed);
+
+  hJetPt->SetMarkerColor(kRed);
+  hJetPt->SetMarkerStyle(25);
+  hJetPt->SetLineColor(kRed);
+
+  hZ->SetMarkerColor(kRed);
+  hZ->SetMarkerStyle(25);
+  hZ->SetLineColor(kRed);
+
+  hR->SetMarkerColor(kRed);
+  hR->SetMarkerStyle(25);
+  hR->SetLineColor(kRed);
+
+  float mM; float weight; float mPt; float mJPt; float mR; float mZ; int mCen;
+
+  double binning[6] = {0,0.05,0.1,0.2,0.3,0.4};
+
+  TH1F *Mass = new TH1F("Mass","Mass",100,1.7,2.1);
+  TH1F *Mass_a = new TH1F("Mass_a","Mass_a",100,1.7,2.1);
+
+  TH1F *D0Pt = new TH1F("D0Pt","D0Pt",50,0,50);
+  TH1F *JetPt = new TH1F("JetPt","JetPt",50,0,50);
+  TH1F *Z = new TH1F("Z","Z",10,0,1);
+  TH1F *R = new TH1F("R","R",5,binning);
+
+  TH1F *D0Pt_a = new TH1F("D0Pt_a","D0Pt_a",50,0,50);
+  TH1F *JetPt_a = new TH1F("JetPt_a","JetPt_a",50,0,50);
+  TH1F *Z_a = new TH1F("Z_a","Z_a",10,0,1);
+  TH1F *R_a = new TH1F("R_a","R_a",5,binning);
+
+  TH1F* weights = new TH1F("weights","weights",120,-1.2,1.2);
+
+  double sum=0;
+  double sumw=0;
+  
+  TFile *f_D = new TFile("sWeight_PT_0_3.root");
+  TChain* ch = (TChain*) f_D->Get("Signal_sw");
+  ch->SetBranchAddress( "mM" , &mM );
+  ch->SetBranchAddress( "sWeight" , &weight );
+  ch->SetBranchAddress( "mPt" , &mPt );
+  ch->SetBranchAddress( "mJPt" , &mJPt );
+  ch->SetBranchAddress( "mR" , &mR );
+  ch->SetBranchAddress( "mZ" , &mZ );
+  ch->SetBranchAddress( "mCen" , &mCen );
+  int loop = ch->GetEntries();// 
+  for(int i =0;i<loop;i++){
+      if(i%10000==0)cout << "On "<< i << " out of " << loop << " " << float(i)/loop*100 << "%" << endl;
+      ch->GetEntry(i);
+      sumw+=weight;
+      sum++;
+      weights->Fill(weight);
+      D0Pt->Fill(mPt,weight);
+      JetPt->Fill(mJPt,weight);
+      Z->Fill(mZ,weight);
+      R->Fill(mR,weight);
+      D0Pt_a->Fill(mPt);
+      JetPt_a->Fill(mJPt);
+      Z_a->Fill(mZ);
+      R_a->Fill(mR);
+      Mass->Fill(mM,weight);
+      Mass_a->Fill(mM);
+  }
+
+  f_D->Close();
+  
+  TFile *f_D2 = new TFile("sWeight_PT_3_10.root");
+  TChain* ch = (TChain*) f_D2->Get("Signal_sw");
+
+  ch->SetBranchAddress( "mM" , &mM );
+  ch->SetBranchAddress( "sWeight" , &weight );
+  ch->SetBranchAddress( "mPt" , &mPt );
+  ch->SetBranchAddress( "mJPt" , &mJPt );
+  ch->SetBranchAddress( "mR" , &mR );
+  ch->SetBranchAddress( "mZ" , &mZ );
+  ch->SetBranchAddress( "mCen" , &mCen );
+  loop = ch->GetEntries();// 
+  for(int i =0;i<loop;i++){
+      if(i%10000==0)cout << "On "<< i << " out of " << loop << " " << float(i)/loop*100 << "%" << endl;
+      ch->GetEntry(i);
+      sumw+=weight;
+      sum++;
+      weights->Fill(weight);
+      D0Pt->Fill(mPt,weight);
+      JetPt->Fill(mJPt,weight);
+      Z->Fill(mZ,weight);
+      R->Fill(mR,weight);
+      D0Pt_a->Fill(mPt);
+      JetPt_a->Fill(mJPt);
+      Z_a->Fill(mZ);
+      R_a->Fill(mR);
+      Mass->Fill(mM,weight);
+      Mass_a->Fill(mM);
+  }
+
+  DN(R);
+  DN(R_a);
+  DN(hR);
+
+  
+  D0Pt_a->SetLineColor(kBlue);
+  JetPt_a->SetLineColor(kBlue);
+  Z_a->SetLineColor(kBlue);
+  R_a->SetLineColor(kBlue);
+  D0Pt_a->SetMarkerColor(kBlue);
+  JetPt_a->SetMarkerColor(kBlue);
+  Z_a->SetMarkerColor(kBlue);
+  R_a->SetMarkerColor(kBlue);
+  D0Pt_a->SetMarkerStyle(25);
+  JetPt_a->SetMarkerStyle(25);
+  Z_a->SetMarkerStyle(25);
+  R_a->SetMarkerStyle(25);
+
+  D0Pt->GetYaxis()->SetTitle("dN/d#it{p}_{T} (#it{c}/GeV)");
+  JetPt->GetYaxis()->SetTitle("dN/d#it{p}_{T} (#it{c}/GeV)");  
+  Z->GetYaxis()->SetTitle("dN/d#it{z}");
+  R->GetYaxis()->SetTitle("dN/d#DeltaR");
+  D0Pt->GetXaxis()->SetTitle("D^{0} p_{T} (GeV/#it{c})");
+  JetPt->GetXaxis()->SetTitle("Jet p_{T} (GeV/#it{c})");
+  Z->GetXaxis()->SetTitle("#it{z}");
+  R->GetXaxis()->SetTitle("#DeltaR");
+  Mass_a->GetXaxis()->SetTitle("m(K#pi) (GeV)");
+  Mass_a->GetYaxis()->SetTitle("Counts");
+  TLegend *leg = new TLegend(0.7,0.7,0.9,0.9);
+  leg->AddEntry(Z_a,"All Data","PL");
+  leg->AddEntry(Z,"sWeighted","PL");
+
+  D0Pt->GetXaxis()->SetRangeUser(0,10);
+  JetPt->GetXaxis()->SetRangeUser(0,50);
+  R->GetXaxis()->SetRangeUser(0,0.4);
+  Z->GetXaxis()->SetRangeUser(0,1);
+
+
+  D0Pt->GetYaxis()->SetRangeUser(1,D0Pt_a->GetMaximum()*1.5);
+  JetPt->GetYaxis()->SetRangeUser(1,JetPt_a->GetMaximum()*1.5);
+  R->GetYaxis()->SetRangeUser(1,R_a->GetMaximum()*1.5);
+  Z->GetYaxis()->SetRangeUser(1,Z_a->GetMaximum()*1.5);
+
+  weights->GetYaxis()->SetTitle("Counts");
+  weights->GetXaxis()->SetTitle("sWeight");
+
+  TCanvas *c1 = new TCanvas("c1","c1");
+  D0Pt->DrawClone("PE");
+  D0Pt_a->DrawClone("same PE");
+  leg->Draw("same");
+  TCanvas *c2 =new TCanvas("c2","c2");
+  JetPt->DrawClone("PE");
+  JetPt_a->DrawClone("same PE");
+  leg->Draw("same");
+  TCanvas *c3 =new TCanvas("c3","c3");
+  Z->DrawClone("PE");
+  Z_a->DrawClone("same PE");
+  leg->Draw("same");
+  TCanvas *c4 =new TCanvas("c4","c4");
+  R->DrawClone("PE");
+  R_a->DrawClone("same PE");
+  leg->Draw("same");
+  TCanvas *c5 =new TCanvas("c5","c5");
+  weights->Draw("PE");
+
+  hD0Pt->Scale(1./sumw);
+  hJetPt->Scale(1./sumw);
+  hZ->Scale(1./sumw);
+  hR->Scale(1./sumw);
+
+  D0Pt->Scale(1./sumw);
+  JetPt->Scale(1./sumw);
+  Z->Scale(1./sumw);
+  R->Scale(1./sumw);
+  D0Pt_a->Scale(1./sum);
+  JetPt_a->Scale(1./sum);
+  Z_a->Scale(1./sum);
+  R_a->Scale(1./sum);
+
+  D0Pt->GetYaxis()->SetTitle("(1/N) dN/d#it{p}_{T} (#it{c}/GeV)");
+  JetPt->GetYaxis()->SetTitle("(1/N_{jet}) dN/d#it{p}_{T} (#it{c}/GeV)");
+  Z->GetYaxis()->SetTitle("(1/N_{jet}) dN/d#it{z}");
+  R->GetYaxis()->SetTitle("(1/N_{jet}) dN/d#DeltaR");
+  TLegend *leg1 = new TLegend(0.7,0.7,0.9,0.9);
+  leg1->AddEntry(hD0Pt,"SB Subtracted","PL");
+  leg1->AddEntry(D0Pt,"sWeighted","PL");
+  TCanvas *c11 = new TCanvas("c11","c11");
+  D0Pt->DrawClone("PE");
+  hD0Pt->DrawClone("same PE");
+  D0Pt->DrawClone("same PE");
+  leg1->Draw("same");
+  TCanvas *c21 =new TCanvas("c21","c21");
+  JetPt->DrawClone("PE");
+  hJetPt->DrawClone("same PE");
+  JetPt->DrawClone("same PE");
+  leg1->Draw("same");
+TCanvas *c31 =new TCanvas("c31","c31");
+  Z->DrawClone("PE");
+  hZ->DrawClone("same PE");
+  Z->DrawClone("same PE");
+  leg1->Draw("same");
+TCanvas *c41 =new TCanvas("c41","c41");
+  R->DrawClone("PE");
+  hR->DrawClone("same PE");
+  R->DrawClone("same PE");
+  leg1->Draw("same");
+}
+void SBSub(TH1F* h1, TH1F* h2, double ww){
+    for(int i = 1;i<h1->GetNbinsX()+1;i++){
+        double vv= h1->GetBinContent(i);
+        double sb= h2->GetBinContent(i);
+        double vve= h1->GetBinError(i);
+        double sbe= h2->GetBinError(i);
+        h1->SetBinContent(i,vv-sb*ww);
+        h1->SetBinError(i,sqrt(vve*vve+sbe*ww*sbe*ww));
+    }
+}
+void DN(TH1F *R){
+    for(int i = 1;i<R->GetNbinsX()+1;i++){
+	double val = R->GetBinContent(i);
+	double er = R->GetBinError(i);
+	double width = R->GetBinWidth(i);
+	R->SetBinContent(i,val/width);
+	R->SetBinError(i,er/width);
+    }
+
+}

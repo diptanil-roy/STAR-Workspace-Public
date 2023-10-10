@@ -1,0 +1,341 @@
+/////////////////////////////////////////////////////////////////////////
+// SPlot for HF Jet
+// author: Matthew Kelsey
+// date Mar. 1 2021 
+/////////////////////////////////////////////////////////////////////////
+
+#ifndef __CINT__
+#include "RooGlobalFunc.h"
+#endif
+#include "RooRealVar.h"
+#include "RooStats/SPlot.h"
+#include "RooDataSet.h"
+#include "RooRealVar.h"
+#include "RooGaussian.h"
+#include "RooExponential.h"
+#include "RooChebychev.h"
+#include "RooAddPdf.h"
+#include "RooProdPdf.h"
+#include "RooAddition.h"
+#include "RooProduct.h"
+#include "TCanvas.h"
+#include "RooAbsPdf.h"
+#include "RooFit.h"
+#include "RooFitResult.h"
+#include "RooWorkspace.h"
+#include "RooConstVar.h"
+
+// use this order for safety on library loading
+using namespace RooFit ;
+using namespace RooStats ;
+
+// see below for implementation
+
+double _pt_low=1.;
+double _pt_high=10.;
+int _cen_low=0;
+int _cen_high=10;
+double _jetpt_low=0.;
+double _jetpt_high=1000.;
+void AddModel(RooWorkspace*);
+void AddData(RooWorkspace*, TTree*);
+void DoSPlot(RooWorkspace*, TTree*);
+void MakePlots(RooWorkspace*);
+void Write(RooWorkspace*, TTree*);
+void makeWeightsFor1GeV(){
+    RooMsgService::instance().setGlobalKillBelow(RooFit::ERROR);
+    //Get Signal reduced tree
+    TFile *f_D = new TFile("./out_final.root");
+    TTree *t = (TTree*)f_D->Get("t");
+    // Create a new workspace to manage the project.
+    RooWorkspace* wspace = new RooWorkspace("myWS");
+    // add the signal and background models to the workspace.
+    // Inside this function you will find a discription of the model.
+    AddModel(wspace);//worspace,ptbin,ht trigger (0=MB,1=HT),systematic iteration
+    // add data to the workspace
+    AddData(wspace,t);
+    // do sPlot.  
+    //This wil make a new dataset with sWeights added for every event.
+    DoSPlot(wspace,t);
+    // Make some plots showing the discriminating variable
+    MakePlots(wspace);
+    //Now write everything to new tree
+    Write(wspace,t);
+    // cleanup
+    delete wspace;
+}
+//____________________________________
+void AddModel(RooWorkspace* ws){
+    Double_t lowRange = 1.75, highRange = 2.02;
+    // make a RooRealVar for the observables
+    RooRealVar mM("mM", "m(K#pi) (GeV/#it{c})", lowRange, highRange,"");
+    /////////////////////////////////////////////
+    std::cout << ">>> Make model" << std::endl;
+    // model for signal
+
+    RooRealVar m1("m1","D0 Mass", 1.868, 1.855, 1.90);
+    RooRealVar sigma1("sigma1", "sigma1",0.02 ,0.005,0.024);
+    RooGaussian myModel("myModel", "myModel", mM, m1, sigma1);
+      
+    RooRealVar bg1 ("bg1","bg1",-5.08148e-01,-10,10);
+    RooRealVar bg2("bg2","bg2",-1.46359e-01,-10,10);
+    RooRealVar bg3("bg3","bg3",7.85434e-02,-10,10);
+    //RooRealVar bg3("bg3","bg3",7.85434e-03,-1,1);
+    RooPolynomial bkgModel("bkgModel","bkgModel",mM,RooArgList(bg1,bg2,bg3));
+  
+    RooRealVar Yield("Yield","fitted yield",5000 ,100.,10000000) ;
+    RooRealVar bkgYield("bkgYield","bkg fitted yield",50000 ,0.,10000000) ;
+    // now make the combined model                                                                                                                                                                       
+    std::cout << ">>> Make full model" << std::endl;
+    RooAddPdf model("model","model",
+        RooArgList(myModel,bkgModel),
+        RooArgList(Yield,bkgYield));
+
+
+    std::cout << ">>> Import model" << std::endl;
+    ws->import(model);
+}
+
+//____________________________________
+void AddData(RooWorkspace* ws, TTree* t){
+  std::cout << ">>> Make data set and import to workspace" << std::endl;
+    RooRealVar* mM = ws->var("mM");
+    RooRealVar mPt("mPt", "mPt", -1e10, 1e10);
+    RooRealVar mEta("mEta", "mEta", -1e10, 1e10);
+    RooRealVar mJEta("mJEta", "mJEta", -1e10, 1e10);
+    RooRealVar mJPt("mJPt", "mJPt", -1e10, 1e10);
+    RooRealVar mHPt("mHPt", "mHPt", -1e10, 1e10);
+    RooRealVar mZ("mZ", "mZ", -1e10, 1e10);
+    RooRealVar mR("mR", "mR", -1e10, 1e10);
+    RooRealVar mCen("mCen", "mCen", -1e10, 1e10);
+    RooRealVar mWeight("mWeight", "mWeight", -1e10, 1e10);
+    RooRealVar mJetArea("mJetArea", "mJetArea", -1e10, 1e10);
+    RooArgSet* variables = new RooArgSet();
+    variables->add(*mM);
+    variables->add(mPt);
+    variables->add(mEta);
+    variables->add(mJEta);
+    variables->add(mJPt);
+    variables->add(mHPt);
+    variables->add(mZ);
+    variables->add(mR);
+    variables->add(mCen);
+    variables->add(mWeight);
+    variables->add(mJetArea);
+    char cuts[200];
+    //sprintf(cuts,"mJPt>%1.2f",5.0);
+    sprintf(cuts,"mEta>%1.2f && mEta<%1.2f &&  mJPt>%1.2f && mJPt<%1.2f && mPt>%1.2f && mPt<%1.2f && mCen>=%i && mCen<%i",-10.,10.,_jetpt_low,_jetpt_high,_pt_low,_pt_high,_cen_low,_cen_high);
+    cout << "Cuts used " << cuts << endl;
+    RooDataSet* data = new RooDataSet("data","data",*variables,Import(*t),Cut(cuts));
+    // import data into workspace
+    ws->import(*data, Rename("data"));
+}
+
+//____________________________________
+void DoSPlot(RooWorkspace* ws,TTree *tree){
+  std::cout << ">>> Calculate sWeights" << std::endl;
+  
+    // get what we need out of the workspace to do the fit                                                                                                                                            
+    RooAbsPdf* model = ws->pdf("model");
+    RooRealVar* Yield = ws->var("Yield");
+    RooRealVar* bkgYield = ws->var("bkgYield");
+    RooDataSet* data = (RooDataSet*) ws->data("data");
+    // fit the model to the data.                                                                                                                                                                    
+    model->fitTo(*data, Extended() );
+    // The sPlot technique requires that we fix the parameters                                                                                                                                    
+    // of the model that are not yields after doing the fit.                                                                                                                                         
+    RooRealVar* sigma1 = ws->var("sigma1");
+    RooRealVar* m1 = ws->var("m1");
+    RooRealVar* bg1 = ws->var("bg1");
+    RooRealVar* bg2 = ws->var("bg2");
+    RooRealVar* bg3 = ws->var("bg3");
+    sigma1->setConstant();
+    m1->setConstant();
+    bg1->setConstant();
+    bg2->setConstant();
+    bg3->setConstant();
+    RooMsgService::instance().setSilentMode(true);
+
+
+    RooStats::SPlot* sData = new RooStats::SPlot("sData","An SPlot",
+             *data, model, RooArgList(*Yield,*bkgYield) );
+    // Check that our weights have the desired properties                                                                                                                                             
+    std::cout << ">>> Check SWeights:" << std::endl;
+
+
+    std::cout << std::endl <<  "Yield of D0 is "
+        << Yield->getVal() << ".  From sWeights it is "
+        << sData->GetYieldFromSWeight("Yield") << std::endl;
+
+
+    std::cout << "Yield of BKG is "
+        << bkgYield->getVal() << ".  From sWeights it is "
+        << sData->GetYieldFromSWeight("bkgYield") << std::endl
+        << std::endl;
+    std::cout << "import new dataset with sWeights" << std::endl;
+    ws->import(*data, Rename("dataWithSWeights"));
+ 
+}
+
+void MakePlots(RooWorkspace* ws){
+
+    gROOT->ProcessLine(".x ~/myStyle.C");
+    std::cout << ">>> Make plots" << std::endl;
+    RooAbsPdf* model = ws->pdf("model");
+    RooAbsPdf* myModel = ws->pdf("myModel");
+    RooAbsPdf* bkgModel = ws->pdf("bkgModel");
+    RooRealVar* mM = ws->var("mM");
+    RooRealVar* Yield = ws->var("Yield");
+    RooRealVar* bkgYield = ws->var("bkgYield");
+    // note, we get the dataset with sWeights                                                                                                                                                          
+    RooDataSet* data = (RooDataSet*) ws->data("dataWithSWeights");
+    //RooDataSet* data_WS = (RooDataSet*) ws->data("data_WS");                                                                                                                                         
+    model->fitTo(*data, Extended() );
+
+    TCanvas* cdata = new TCanvas("sPlot","sPlot");
+    //cdata->Divide(1,3);                                                                                                                                                                              
+    cdata->cd(1);
+    RooPlot* frame = mM->frame(Bins(120)) ;
+    data->plotOn(frame ) ;
+    //data_WS->plotOn(frame,Bins(50),Name("Histws"),LineStyle(1),LineColor(15),FillColor(17),FillStyle(3007));                                                                                         
+    model->plotOn(frame) ;
+    model->plotOn(frame,Components(*myModel),LineStyle(kDashed), LineColor(kGreen-2),Normalization(1.0,RooAbsReal::RelativeExpected)) ;
+    model->plotOn(frame,Components(*bkgModel),LineStyle(kDashed),LineColor(kRed),Normalization(1.0,RooAbsReal::RelativeExpected)) ;
+    frame->SetTitle("Fit of model to discriminating variable");
+    frame->Draw() ;
+    char save[100];
+
+    // TPaveText with fit parameters
+
+    TPaveText* pt = new TPaveText(0.55,0.6,0.9,0.9,"brNDC");
+    pt->SetBorderSize(0);
+    pt->SetFillStyle(0);
+    pt->SetTextAlign(12);
+    pt->SetTextSize(0.04);
+    pt->SetTextColor(kBlack);
+    pt->AddText(Form("Yield = %1.2f #pm %1.2f",Yield->getVal(),Yield->getError()));
+    pt->AddText(Form("Bkg = %1.2f #pm %1.2f",bkgYield->getVal(),bkgYield->getError()));
+    pt->Draw("SAME");
+
+    sprintf(save,"plots_D0JetpT_0_100GeV/D0_Mass_sPlot_PT_%1.f_%1.f_Cen_%i_%i.pdf",_pt_low,_pt_high,_cen_low,_cen_high);
+    cdata->SaveAs(save);
+
+
+    double bkg_y = bkgYield->getVal();
+    
+
+    double bkg_sb = 0;
+    mM->setRange("range",1.75,2.02);
+    RooAbsReal* bkg = bkgModel->createIntegral(*mM,*mM,"range");
+
+    mM->setRange("range1",1.75,1.8);
+    RooAbsReal* bkg1 = bkgModel->createIntegral(*mM,*mM,"range1");
+    mM->setRange("range2",1.8,1.92);
+    RooAbsReal* bkg2 = bkgModel->createIntegral(*mM,*mM,"range2");
+    mM->setRange("range3",1.92,2.02);
+    RooAbsReal* bkg3 = bkgModel->createIntegral(*mM,*mM,"range3");
+
+    double frac1 = bkg1->getVal();///bkg->getVal();
+    double frac2 = bkg2->getVal();///bkg->getVal();
+    double frac3 = bkg3->getVal();///bkg->getVal();
+
+    cout << "Now looking at BKG fractions: " << endl;
+    cout << "Low SB " << frac1 <<endl;
+    cout << "High SB " << frac3 <<endl;
+    cout << "Signal Region " << frac2 <<endl;
+
+    cout <<"Ratio for SB subtractions " << endl;
+    cout << frac3/(frac1+frac2) << endl;
+
+
+
+
+}
+void Write(RooWorkspace* ws, TTree* tree){
+    char outfile[100];
+    sprintf(outfile,"NewsWeight_PT_%1.f_%1.f_Cen_%i_%i.root",_pt_low,_pt_high,_cen_low,_cen_high);
+    TFile out(outfile,"RECREATE");
+    RooDataSet* data = (RooDataSet*) ws->data("dataWithSWeights");
+    TTree* Signal_sw = new TTree("Signal_sw","Signal_sw");//tree->CloneTree(0);
+    float weight;
+    float MM;
+    float MPt;
+    float MJPt;
+    float MHPt;
+    float MZ;
+    float MR;
+    int MCEN;
+    float MWEIGHT;
+    float MJETAREA;
+    float META;
+    float MJETA;
+    Signal_sw->Branch("sWeight",&weight,"sWeight/F") ;
+    Signal_sw->Branch("mM",&MM,"mM/F") ;
+    Signal_sw->Branch("mPt",&MPt,"mPt/F") ;
+    Signal_sw->Branch("mJPt",&MJPt,"mJPt/F") ;
+    Signal_sw->Branch("mHPt",&MHPt,"mHPt/F") ;
+    Signal_sw->Branch("mZ",&MZ,"mZ/F") ;
+    Signal_sw->Branch("mR",&MR,"mR/F") ;
+    Signal_sw->Branch("mCen",&MCEN,"mCen/I") ;
+    Signal_sw->Branch("mWeight",&MWEIGHT,"mWeight/F") ;
+    Signal_sw->Branch("mJetArea",&MJETAREA,"mJetArea/F") ;
+    Signal_sw->Branch("mEta",&META,"mEta/F") ;
+    Signal_sw->Branch("mJEta",&MJETA,"mJEta/F") ;
+    data->get()->Print();
+    RooRealVar* Yield_sw = ws->var("Yield_sw");
+    RooRealVar* mM = ws->var("mM");
+    RooRealVar* mPt = ws->var("mPt");
+    RooRealVar* mJPt = ws->var("mJPt");
+    RooRealVar* mHPt = ws->var("mHPt");
+    RooRealVar* mZ = ws->var("mZ");
+    RooRealVar* mR = ws->var("mR");
+    RooRealVar* mCen = ws->var("mCen");
+    RooRealVar* mWeight = ws->var("mWeight");
+    RooRealVar* mJetArea = ws->var("mJetArea");
+    RooRealVar* mJEta = ws->var("mJEta");
+    RooRealVar* mEta = ws->var("mEta");
+    RooArgSet* set;
+    for (int i=0 ; i< data->sumEntries() ; i++) {
+  RooArgSet* row = (RooArgSet*)data->get(i);  
+  
+  Yield_sw = (RooRealVar*)row->find(Yield_sw->GetName()); 
+  weight = Yield_sw->getVal();
+  
+  mM = (RooRealVar*)row->find(mM->GetName());
+        MM = mM->getVal();
+
+  mPt = (RooRealVar*)row->find(mPt->GetName());
+        MPt = mPt->getVal();
+  
+  mJPt = (RooRealVar*)row->find(mJPt->GetName());
+        MJPt = mJPt->getVal();
+
+        mHPt = (RooRealVar*)row->find(mHPt->GetName());
+        MHPt = mHPt->getVal();
+
+  mZ = (RooRealVar*)row->find(mZ->GetName());
+        MZ = mZ->getVal();
+
+  mR = (RooRealVar*)row->find(mR->GetName());
+        MR = mR->getVal();
+
+  mCen = (RooRealVar*)row->find(mCen->GetName());
+        MCEN = mCen->getVal();
+  mWeight = (RooRealVar*)row->find(mWeight->GetName());
+        MWEIGHT = mWeight->getVal();
+
+        mJetArea = (RooRealVar*)row->find(mJetArea->GetName());
+        MJETAREA = mJetArea->getVal();
+        mJEta = (RooRealVar*)row->find(mJEta->GetName());
+        MJETA = mJEta->getVal();
+  mEta = (RooRealVar*)row->find(mEta->GetName());
+        META = mEta->getVal();
+
+  Signal_sw->Fill();
+    }
+    
+    Signal_sw->Write();
+    cout << Form("FileName = NewsWeight_PT_%1.f_%1.f_Cen_%i_%i.root",_pt_low,_pt_high,_cen_low,_cen_high) << endl;
+    out.Close();
+    out.Delete(); 
+}

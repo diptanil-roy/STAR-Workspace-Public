@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<job maxFilesPerProcess="1" fileListSyntax="paths" simulateSubmission="false">
+<command>
+starver SL16d
+
+root4star -l -b -q -x 'run_StMcAnalysisMaker.C("$INPUTFILE0","$JOBID")'
+
+</command>
+	
+	<stdout URL="file:./log/$JOBID.log"/>
+	<stderr URL="file:./err/$JOBID.err"/>
+
+	<Generator>
+		<Location>./report/</Location>
+		<ScriptLocation>./csh/</ScriptLocation>
+		<ListLocation>./list/</ListLocation>
+	</Generator>
+
+  <input URL="filelist:./EmbeddingFile.list"/>
+
+	<SandBox installer="ZIP">
+    <Package name="LocalLibraries">
+			<File>file:./StRoot/</File>
+      <File>file:./auau200GeVRun14Ana/</File>
+      <File>file:./StRefMultCorr/</File>
+      <File>file:./run_StMcAnalysisMaker.C</File>
+			<File>file:./.sl64_gcc482/</File>
+		</Package>
+	</SandBox>
+  <output fromScratch="*.root" toURL="file:./production/"/>
+</job>

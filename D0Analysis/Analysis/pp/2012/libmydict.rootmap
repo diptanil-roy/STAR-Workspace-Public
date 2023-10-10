@@ -1,0 +1,9 @@
+{ decls }
+namespace std { inline namespace __1 {  } }
+
+[ libmydict.so ]
+# List of selected classes
+class vector<float>
+class vector<int>
+class vector<vector<float> >
+class vector<vector<int> >

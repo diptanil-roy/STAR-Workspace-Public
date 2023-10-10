@@ -1,0 +1,46 @@
+<job  name="HIResponse_3_inf" maxFilesPerProcess="3" fileListSyntax="xrootd" simulateSubmission ="false" >
+
+	<stdout URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan18_2023_pthat_3_inf/log/$JOBID.log" />
+	<stderr URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan18_2023_pthat_3_inf/log/$JOBID.err" />
+	<!-- <input URL="filelist:/gpfs01/star/pwg/droy1/TestCodeDirectory/OfficialSimulationFileList.list" nFiles="all" /> -->
+	<!-- <input URL="filelist:/gpfs01/star/pwg/droy1/SimulationJetsFrameWork/Mar24FileList/Mar24_1929.list" nFiles="all" /> -->
+	<input URL="filelist:/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/Run14MidLumi_Randomised_2.list" nFiles="1" />
+	<command>
+	    
+	    mkdir /tmp/droy1_${JOBID}
+		cd /tmp/droy1_${JOBID}
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/HIOverlay_5GeV.C .
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/StRoot .
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/.sl73_gcc485 .
+		cp -r /star/u/droy1/Y2019/STAR/FastJet .
+
+		ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/fastjet
+        ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/siscone
+
+		starver dev
+        setenv FASTJET FastJet/fastjet-install
+
+        set MCFILENAME = "/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/HFJets_AllHardQCD_3_inf_JetPt_5.list"
+
+        shuf -n 10 ${MCFILENAME} &gt; ${JOBID}.list
+
+        cp `cat ${JOBID}.list` .
+
+        ls rcf*.root &gt; ${JOBID}_MC.list
+
+        ls -l --human-readable rcf*.root
+
+		root -b -q -l 'HIOverlay_5GeV.C( "'"$FILELIST"'", "'"${JOBID}_MC.list"'", "'"${JOBID}"'", 1000000000, "'"${JOBID}"'" )'
+	    
+	    cp ${JOBID}_jets.root /gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan18_2023_pthat_3_inf/out/.
+
+	    rm -rf /tmp/droy1_${JOBID}
+
+	</command>
+
+	<Generator> 
+ 		<Location>/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_Jan18_2023_pthat_3_inf/gen/</Location> 
+ 	</Generator> 
+</job>

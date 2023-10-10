@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "applyWeightsFor1GeV.C": "cpp",
+        "applyweights.C": "cpp",
+        "makeWeightsFor1GeV.C": "cpp",
+        "makeweights.C": "cpp",
+        "SlimDataTree.C": "cpp",
+        "MakeFONLLHistogram.C": "cpp",
+        "MakePYTHIAHistogram.C": "cpp",
+        "PrepareResponseHistograms.C": "cpp",
+        "UnfoldData.C": "cpp",
+        "UnfoldMC.C": "cpp",
+        "PlotTheUnfoldedDistributionForMC.C": "cpp",
+        "PlotTheUnfoldedDistributionForData.C": "cpp",
+        "PlotTheUnfoldedDistributionForAreaData.C": "cpp",
+        "GetCentralityWeights.C": "cpp",
+        "CompareDataVsGeant.C": "cpp",
+        "PlotVsD0pT.C": "cpp",
+        "CompareSpectraAndRCPBetweenMethods.C": "cpp",
+        "PrepareResponseHistograms_Backup.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

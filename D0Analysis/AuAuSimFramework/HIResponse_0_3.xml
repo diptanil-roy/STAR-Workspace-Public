@@ -1,0 +1,39 @@
+<job  name="HIResponse_0_3" maxFilesPerProcess="1" fileListSyntax="xrootd" simulateSubmission ="false" >
+
+	<stdout URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_2022_pthat_0_3/log/$JOBID.log" />
+	<stderr URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_2022_pthat_0_3/log/$JOBID.err" />
+	<!-- <input URL="filelist:/gpfs01/star/pwg/droy1/TestCodeDirectory/OfficialSimulationFileList.list" nFiles="all" /> -->
+	<!-- <input URL="filelist:/gpfs01/star/pwg/droy1/SimulationJetsFrameWork/Mar24FileList/Mar24_1929.list" nFiles="all" /> -->
+	<input URL="filelist:/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/Run14MidLumi_Randomised_1.list" nFiles="10000" />
+	<command>
+
+	    
+	    mkdir /tmp/droy1_${JOBID}
+		cd /tmp/droy1_${JOBID}
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/HIOverlay.C .
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/StRoot .
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/.sl73_gcc485 .
+		cp -r /star/u/droy1/Y2019/STAR/FastJet .
+
+		ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/fastjet
+        ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/siscone
+
+		starver SL21d
+        setenv FASTJET FastJet/fastjet-install
+
+        set MCFILENAME = "/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/SimulationFileList_pthat_0_3.list"
+
+		root -b -q -l 'HIOverlay.C( "'"$FILELIST"'", "'"$MCFILENAME"'", "'"${JOBID}"'", 1000000000, "'"${JOBID}"'" )'
+	    
+	    cp ${JOBID}_jets.root /gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_2022_pthat_0_3/out/.
+
+	    rm -rf /tmp/droy1_${JOBID}
+
+	</command>
+
+	<Generator> 
+ 		<Location>/gpfs01/star/pwg_tasks/jetcorr03/HIOverlay_HFJets_2022_pthat_0_3/gen/</Location> 
+ 	</Generator> 
+</job>

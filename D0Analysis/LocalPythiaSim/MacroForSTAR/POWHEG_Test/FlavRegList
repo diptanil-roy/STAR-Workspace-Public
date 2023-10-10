@@ -1,0 +1,93 @@
+  (g   g )  ==>   c   c~  g   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  0 5
+  (s~  s )  ==>   c   c~  g   | mult=  1
+   s~  s    ==>   c   c~  | uborn, mult=  1
+  0 5
+  (s~) g    ==>   c   c~  s~  | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   s~ (g )  ==>   c   c~  s~  | mult=  1
+   s~  s    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (g ) s~   ==>   c   c~  s~  | mult=  1
+   s   s~   ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   g  (s~)  ==>   c   c~  s~  | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (u~  u )  ==>   c   c~  g   | mult=  1
+   u~  u    ==>   c   c~  | uborn, mult=  1
+  0 5
+  (u~) g    ==>   c   c~  u~  | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   u~ (g )  ==>   c   c~  u~  | mult=  1
+   u~  u    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (g ) u~   ==>   c   c~  u~  | mult=  1
+   u   u~   ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   g  (u~)  ==>   c   c~  u~  | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (d~  d )  ==>   c   c~  g   | mult=  1
+   d~  d    ==>   c   c~  | uborn, mult=  1
+  0 5
+  (d~) g    ==>   c   c~  d~  | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   d~ (g )  ==>   c   c~  d~  | mult=  1
+   d~  d    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (g ) d~   ==>   c   c~  d~  | mult=  1
+   d   d~   ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   g  (d~)  ==>   c   c~  d~  | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (d   d~)  ==>   c   c~  g   | mult=  1
+   d   d~   ==>   c   c~  | uborn, mult=  1
+  0 5
+  (d ) g    ==>   c   c~  d   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   d  (g )  ==>   c   c~  d   | mult=  1
+   d   d~   ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (g ) d    ==>   c   c~  d   | mult=  1
+   d~  d    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   g  (d )  ==>   c   c~  d   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (u   u~)  ==>   c   c~  g   | mult=  1
+   u   u~   ==>   c   c~  | uborn, mult=  1
+  0 5
+  (u ) g    ==>   c   c~  u   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   u  (g )  ==>   c   c~  u   | mult=  1
+   u   u~   ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (g ) u    ==>   c   c~  u   | mult=  1
+   u~  u    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   g  (u )  ==>   c   c~  u   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (s   s~)  ==>   c   c~  g   | mult=  1
+   s   s~   ==>   c   c~  | uborn, mult=  1
+  0 5
+  (s ) g    ==>   c   c~  s   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   s  (g )  ==>   c   c~  s   | mult=  1
+   s   s~   ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+  (g ) s    ==>   c   c~  s   | mult=  1
+   s~  s    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5
+   g  (s )  ==>   c   c~  s   | mult=  1
+   g   g    ==>   c   c~  | uborn, mult=  1
+  1 5  2 5

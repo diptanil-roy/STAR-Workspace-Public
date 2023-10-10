@@ -1,0 +1,21 @@
+<job  name="D0FileAdderPicoDst" maxFilesPerProcess="30" fileListSyntax="paths" simulateSubmission ="true" >
+
+	<stdout URL="file:/gpfs01/star/pwg_tasks/jetcorr03/D0Picos_May2_2023/log/$JOBID.log" />
+	<stderr URL="file:/gpfs01/star/pwg_tasks/jetcorr03/D0Picos_May2_2023/log/$JOBID.err" />
+	<input URL="filelist:/gpfs01/star/pwg/droy1/D0JetTreeMakerCode/D0PicoDsts_FileList.list" nFiles="10" />
+	<command>
+
+	    cd $SCRATCH
+
+		hadd -n -k ${JOBID}.root @${FILELIST}
+
+        cp ${JOBID}.root /gpfs01/star/pwg_tasks/jetcorr03/D0Picos_May2_2023/picos/.
+
+	</command>
+
+	<Generator> 
+ 		<Location>/gpfs01/star/pwg_tasks/jetcorr03/D0Picos_May2_2023/gen/</Location> 
+ 	</Generator> 
+</job>
+
+

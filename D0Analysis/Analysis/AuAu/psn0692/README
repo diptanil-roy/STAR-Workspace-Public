@@ -1,0 +1,42 @@
+This is all the related analysis code for the run14 HFT D0 spectra.
+For STAR note number : psn0692
+
+Since the PicoDst and Embedding data are located on PDSF. So the code should be test and run on PDSF with STAR library SL16d.
+
+There are 5 invidual folds, each of them are for different purpose as discussed below.
+
+==========================================
+1 ./DataAna:
+------------
+This is pico Analysis code, run with mix-event method to reconstruct D0 candidate.
+Plese follow the README file inside that directory to test.
+
+==========================================
+
+2 ./Embedding:
+------------
+This is single track embedding code, extract the single track tpc tracking efficiency for k/pi
+Plese follow the README file inside that directory to test.
+
+==========================================
+
+3 ./Efficiency:
+------------
+This is our data-dreiven fast-simulation package, for the D0 efficiency study
+Plese follow the README file inside that directory to test.
+
+==========================================
+
+4 ./Analysis:
+------------
+This is the following analysis code to extract the D0 yield, systematic uncertatinties, RAA and Rcp calculations and so on.
+Plese follow the README file inside that directory to test.
+
+==========================================
+
+5 ./MkPlots:
+------------
+This is the following code to make the Spectra, RAA and Rcp plots.
+Plese follow the README file inside that directory to test.
+
+==========================================

@@ -1,0 +1,32 @@
+This is the data-driven simulation package used for the D0 efficiency calculation
+
+==========================================
+To test the code, following the next steps. It will take ~minute to produce a small tree
+==========================================
+starver SL16d
+./runTest.sh
+
+
+==========================================
+To run with a large simulation samples, the script shown below. It will take +++Days with current pdsf cpu source.
+==========================================
+please skip this step, instead the output files can be found here : D0.list with 44G data
+==========================================
+./submit_qsub.sh 1e7 D0 0 20
+==========================================
+
+
+==========================================
+To analysis the data-drive fast simu output root files, and extract the D0 rc efficiency
+follow the next steps:
+==========================================
+cd ./ana
+starver SL16d
+make
+./anaToyMcD0 D0.test.list test.root
+==========================================
+with a large data sample, just change with the input file D0.list
+./anaToyMcD0 D0.list D0_eff.root
+==========================================
+please skip the very last step, The output was here: D0_eff_combine_newPID_newCuts_extendpT_1108.root
+==========================================

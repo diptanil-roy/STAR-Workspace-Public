@@ -1,0 +1,39 @@
+<job  name="MCResponse" maxFilesPerProcess="10" fileListSyntax="paths" simulateSubmission ="false" >
+
+	<stdout URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HFMCJets_April5_2023_pthat3_0/log/$JOBID.log" />
+	<stderr URL="file:/gpfs01/star/pwg_tasks/jetcorr03/HFMCJets_April5_2023_pthat3_0/log/$JOBID.err" />
+	<!-- <input URL="filelist:/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/HFJets_AllHardQCD_3_inf_JetPt_5_List2.list" nFiles="all" /> -->
+	<input URL="filelist:/gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/SimulationFileList_pthat_3_inf.list" nFiles="all" />
+
+
+	<command>
+
+	    
+	    mkdir /tmp/droy1_${JOBID}
+		cd /tmp/droy1_${JOBID}
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/MCResponse.C .
+
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/StRoot .
+		cp -r /gpfs01/star/pwg/droy1/STAR-Workspace/D0Analysis/AuAuSimFramework/.sl73_gcc485 .
+		cp -r /star/u/droy1/Y2019/STAR/FastJet .
+
+		ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/fastjet
+        ln -s /star/u/droy1/Y2019/STAR/FastJet/fastjet-install/include/siscone
+
+		starver dev
+        setenv FASTJET FastJet/fastjet-install
+
+		root -b -q -l 'MCResponse.C( "'"$FILELIST"'", "'"${JOBID}.root"'", 1000000000, "'"${JOBID}"'" )'
+	    
+	    cp ${JOBID}.root /gpfs01/star/pwg_tasks/jetcorr03/HFMCJets_April5_2023_pthat3_0/out/.
+	    cp ${JOBID}_jets.root /gpfs01/star/pwg_tasks/jetcorr03/HFMCJets_April5_2023_pthat3_0/out/.
+
+	    rm -rf /tmp/droy1_${JOBID}
+
+	</command>
+
+	<Generator> 
+ 		<Location>/gpfs01/star/pwg_tasks/jetcorr03/HFMCJets_April5_2023_pthat3_0/gen/</Location> 
+ 	</Generator> 
+</job>

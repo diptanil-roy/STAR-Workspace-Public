@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "JewelReader.C": "cpp",
+        "FastJetReader.C": "cpp",
+        "ostream": "cpp",
+        "JewelReaderHepMC2.C": "cpp",
+        "iterator": "cpp",
+        "test.C": "cpp",
+        "sstream": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

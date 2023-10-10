@@ -1,0 +1,46 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{lineno}
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+\usepackage{blindtext}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\begin{document}
+
+% Keywords command
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf{\textit{Keywords:}} #1
+}
+
+\title{Measurements of Charm Quark Interaction with the QGP in Heavy-Ion Collisions at STAR}
+\author{Diptanil Roy and Yuan Su\\ \textit{For the STAR Collaboration}}
+\date{\today}
+\maketitle
+
+\section{Abstract}
+
+\begin{linenumbers}
+
+Heavy flavor quarks (charm and bottom), produced in the early stages of heavy-ion collisions, serve as excellent probes to study the properties of the Quark-Gluon Plasma (QGP). When traversing the medium, charm quarks suffer from `jet quenching' thanks to the interactions with the QGP. It can manifest as degradation of charm quark energy and modifications to the fragmentation pattern, both of which are predicted to depend on parton flavor and quark mass. The energy loss can be quantified by comparing yields of charmed mesons or tagged charm jets in heavy-ion collisions to those in $p$+$p$ collisions. On the other hand, medium-induced modifications to the jet shower can be studied using the jet fragmentation function, i.e., the transverse momentum ($p_{\rm T}$) fraction of the jet carried by hadrons along the jet axis ($z = \vec{p}_{\rm T, hadron}\textbf{.}\hat{p}_{\rm T, jet}/|\vec{p}_{\rm T, jet}|$).
+
+In this contribution, we report the first measurement of the $\rm D^{0}$ meson production yield at mid-rapidity ($|y| < 1$) in isobar collisions (Ru+Ru and Zr+Zr) at $\sqrt{s_{\text{NN}}} = 200 \text{ GeV}$, with the STAR experiment at RHIC. We present nuclear modification factors as a function of $p_{\rm T}$ for different centrality classes, and compare them to similar measurements in Au+Au collisions at $\sqrt{s_{\text{NN}}} = 200 \text{ GeV}$. We complement the $\rm D^{0}$ meson studies with measurements of $\rm D^{0}$ meson tagged jets in Au+Au collisions at $\sqrt{s_{\text{NN}}} = 200 \text{ GeV}$. For the first time, we show measurements of charm jet fragmentation function in heavy-ion collisions at RHIC, and the nuclear modification factor as a function of $z$. Additionally, we report the yield modifications of $\rm D^{0}$-tagged jets as a function of $p_{\rm T}$ and the radial profile of the $\rm D^{0}$ mesons in these tagged jets. These reported measurements can help constrain theoretical calculations of parton flavor, parton mass and system size dependencies of parton interactions with the QGP.
+
+\end{linenumbers}
+
+\hspace{10pt}
+
+\end{document}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<job fileListSyntax="paths" maxFilesPerProcess="50" simulateSubmission="false">
+
+        <stdout discard="true" />
+        <stderr URL="file:./err/$JOBID.err" />
+                
+        <Generator>
+        <Location>./report/</Location>
+        <ScriptLocation>./csh/</ScriptLocation>
+        <ListLocation>./list/</ListLocation>
+        </Generator>
+                                                
+<command>
+starver SL16d
+
+root4star -b -l -q StRoot/macros/loadSharedHFLibraries.C runPicoMixedEvent.C++\(\"$FILELIST\",\"$JOBID.root\"\) &gt;&amp; ${JOBID}.log
+tar -zcvf ${JOBID}.log.tgz ${JOBID}.log
+</command>
+
+	<ResourceUsage>
+		<Memory>
+			<MinMemory>4000</MinMemory>
+			<!-- <MaxMemory>2000</MaxMemory> -->
+		</Memory>
+	</ResourceUsage>
+
+  <input URL="filelist:./&listOfFiles;" />
+  <output fromScratch="*.root" toURL="./production/" />
+  <output fromScratch="*.log.tgz" toURL="./log/" />
+
+<SandBox installer="ZIP">
+	<Package name="LocalLibraries">
+		<File>file:./StRoot/</File>
+    <File>file:./runPicoMixedEvent.C</File>
+    <File>file:./picoList_bad_MB.list</File>
+		<File>file:./.sl64_gcc482/</File>
+	</Package>
+</SandBox>
+
+</job>

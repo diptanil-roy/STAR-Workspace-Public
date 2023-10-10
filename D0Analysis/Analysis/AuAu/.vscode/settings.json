@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "DataPlots.C": "cpp",
+        "DataUnfoldMacro.C": "cpp",
+        "HIOverlayMacro.C": "cpp",
+        "IterativeResponseMatrix.C": "cpp",
+        "ResponseMatrix_Weighted.C": "cpp",
+        "HIOverlay.C": "cpp",
+        "PlotsComparingSuperIter.C": "cpp",
+        "MakeFONLLHistogram.C": "cpp",
+        "MakePYTHIAHistogram.C": "cpp",
+        "PrepareResponseHistograms.C": "cpp",
+        "PrepareEfficiencyHistogramsUsingMC.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
